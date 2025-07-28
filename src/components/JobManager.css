@@ -1,0 +1,129 @@
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 16px;
+}
+
+/* Buttons */
+.pagination-btn {
+  background-color: #373737;
+  border: none;
+  padding: 6px 14px;
+  margin: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.pagination-btn:hover:not(:disabled) {
+  background-color: #373737;
+}
+
+.pagination-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Page info text */
+.pagination-text {
+  font-size: 0.9rem;
+  color: white;
+  font-weight: 500;
+}
+
+/* Table styles */
+.jobs-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 800px;
+}
+
+.job-row {
+  cursor: pointer;
+}
+
+.job-row:hover {
+  background-color: darkslategrey;
+}
+
+.jobs-table td {
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.job-command {
+  max-width: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.status {
+  font-weight: bold;
+}
+
+.stop-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: white;
+  padding: 4px;
+  width: 32px;
+}
+
+.stop-btn:hover {
+  color: white;
+  transform: scale(1.1);
+}
+
+.stop-btn:disabled {
+  color: #ccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.retry-count {
+  font-size: 0.85rem;
+  color: #6c757d;
+  margin-left: 2px;
+}
+
+/* status colors (including retrying) */
+.status.running {
+  color: #ffc107; /* Yellow */
+}
+
+.status.queued {
+  color: #6c757d; /* Grey */
+}
+
+.status.failed {
+  color: #dc3545; /* Red */
+}
+
+.status.retrying {
+  color: #ff9800; /* Orange for retrying */
+}
+
+.status.success,
+.status.completed {
+  color: #28a745;
+}
+
+@media (max-width: 600px) {
+  .jobs-table th,
+  .jobs-table td {
+    padding: 6px 8px;
+    font-size: 0.85rem;
+  }
+}

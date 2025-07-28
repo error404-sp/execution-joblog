@@ -3,7 +3,7 @@ export interface Job {
   status: string;
   logs?: string[];
   output?: string;
-  time: string;
+  updated_at: string;
   retries?: number;
 }
 

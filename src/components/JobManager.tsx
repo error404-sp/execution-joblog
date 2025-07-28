@@ -35,8 +35,8 @@ export default function JobManager() {
 
   return (
     <>
-      <div className="overflow-x-auto">
-        <table className="table table-xs">
+      <div className="table-container">
+        <table className="jobs-table">
           <thead>
             <tr>
               <th>Job id</th>
@@ -44,7 +44,7 @@ export default function JobManager() {
               <th>Priority</th>
               <th>timeout</th>
               <th>Status</th>
-              <th>Status</th>
+              <th>Updated</th>
               <th>Stop</th>
             </tr>
           </thead>
@@ -56,30 +56,30 @@ export default function JobManager() {
                 </td>
               </tr>
             ) : (
-              Object.keys(state.jobs).map((jobId) => (
-                <JobTile key={jobId} job={state.jobs[jobId]} />
-              ))
+              Object.values(state.jobs)
+                .slice((page - 1) * 10, page * 10)
+                .map((job) => <JobTile job={job} />)
             )}
           </tbody>
         </table>
       </div>
 
       {/* Pagination controls */}
-      <div className="flex justify-between items-center mt-4">
+      <div className="pagination-container">
         <button
           onClick={() => setPage((p) => Math.max(p - 1, 1))}
           disabled={page === 1}
-          className="px-3 py-1 bg-gray-200 rounded disabled:opacity-50"
+          className="pagination-btn"
         >
           Prev
         </button>
-        <span>
+        <span className="pagination-text">
           Page {page} of {totalPages}
         </span>
         <button
           onClick={() => setPage((p) => Math.min(p + 1, totalPages))}
           disabled={page === totalPages}
-          className="px-3 py-1 bg-gray-200 rounded disabled:opacity-50"
+          className="pagination-btn"
         >
           Next
         </button>

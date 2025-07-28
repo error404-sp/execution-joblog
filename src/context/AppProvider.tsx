@@ -3,25 +3,6 @@ import { AppContext, reducer } from "./AppContext";
 import { socket } from "../socket";
 import type { AgentHealth } from "./AppContext.types";
 
-export function delayedStatusUpdate(
-  dispatch: any,
-  jobId: string,
-  status: string,
-  output?: string,
-  retries?: number,
-  time: string
-) {
-  setTimeout(() => {
-    dispatch({
-      type: "SET_STATUS",
-      jobId,
-      status,
-      output: data.output ? data.output : "",
-      retries: data.retries ? data.retries : 0,
-      time,
-    });
-  }, 2000);
-}
 export function AppProvider({ children }: { children: React.ReactNode }) {
   const [state, dispatch] = useReducer(reducer, {
     jobs: {},
@@ -30,12 +11,24 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     socket.onAny((event, data) => {
+      console.log(event);
+      console.log(data);
       let time = data.time ? new Date(data.time).toLocaleTimeString() : "";
       if (event.startsWith("job_status_")) {
         const jobId = event.split("job_status_")[1];
-        let time = data.time ? new Date(data.time).toUTCString() : "";
+        console.log(typeof jobId);
+        if (jobId != "undefined") {
+          let time = data.time ? new Date(data.time).toUTCString() : "";
 
-        delayedStatusUpdate(dispatch, data.id, data.status, data.output);
+          dispatch({
+            type: "SET_STATUS",
+            jobId,
+            status: data.status,
+            output: data.output ? data.output : "",
+            retries: data.retries ? data.retries : 0,
+            updated_at: time ? time : "",
+          });
+        }
       }
       if (event == "log") {
         dispatch({ type: "ADD_LOG", jobId: data.jobId, log: data.log, time });
