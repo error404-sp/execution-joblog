@@ -73,7 +73,7 @@ export default function JobDetails() {
       </div>
     );
   }
-  console.log(job);
+ 
 
   return (
     <div className="job-details-container">

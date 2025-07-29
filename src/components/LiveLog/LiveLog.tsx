@@ -11,7 +11,6 @@ export default function LiveLog() {
       containerRef.current.scrollTop = containerRef.current.scrollHeight;
     }
   }, [state.globalLogs]);
-  console.log(state.globalLogs);
 
   return (
     <div className="live-log-container" ref={containerRef}>

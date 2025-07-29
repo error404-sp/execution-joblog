@@ -12,12 +12,10 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     socket.onAny((event, data) => {
-      console.log(event);
-      console.log(data);
       let time = data.time ? new Date(data.time).toLocaleTimeString() : "";
       if (event.startsWith("job_status_")) {
         const jobId = event.split("job_status_")[1];
-        console.log(typeof jobId);
+
         if (jobId != "undefined") {
           let time = data.time ? new Date(data.time).toUTCString() : "";
 

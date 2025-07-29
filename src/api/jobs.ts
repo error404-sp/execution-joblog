@@ -1,9 +1,9 @@
-const BACKEND_URL = "http://localhost:5000";
+const apiUrl = "https://joblog-backend-production.up.railway.app";
 import { socket } from "../socket";
 
 export const fetchJobs = async (page, limit) => {
   const response = await fetch(
-    `${BACKEND_URL}/api/jobs?page=${page || 1}&limit=${limit || 10}`
+    `${apiUrl}/api/jobs?page=${page || 1}&limit=${limit || 10}`
   );
 
   if (!response.ok) {
@@ -15,7 +15,7 @@ export const fetchJobs = async (page, limit) => {
 
 export async function stopJob(jobId: string) {
   socket.emit("stop_job", jobId);
-  const res = await fetch(`${BACKEND_URL}/api/jobs/${jobId}/stop`, {
+  const res = await fetch(`${apiUrl}/api/jobs/${jobId}/stop`, {
     method: "POST",
   });
   if (!res.ok) {
@@ -25,7 +25,7 @@ export async function stopJob(jobId: string) {
 }
 
 export async function fetchJobDetails(jobId: string) {
-  const res = await fetch(`${BACKEND_URL}/api/jobs/${jobId}`);
+  const res = await fetch(`${apiUrl}/api/jobs/${jobId}`);
   if (!res.ok) throw new Error("Failed to fetch job details");
   return res.json();
 }
@@ -38,7 +38,7 @@ export async function createJob(jobData: {
   timeout: number;
 }) {
   try {
-    const response = await fetch(`${BACKEND_URL}/api/jobs`, {
+    const response = await fetch(`${apiUrl}/api/jobs`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

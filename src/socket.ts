@@ -1,8 +1,7 @@
 import { io } from "socket.io-client";
+const apiUrl = "https://joblog-backend-production.up.railway.app";
 
-const BACKEND_URL = "http://localhost:5000";
-
-export const socket = io(BACKEND_URL, {
+export const socket = io(apiUrl, {
   transports: ["websocket"],
   reconnection: true,
   reconnectionAttempts: 5,
