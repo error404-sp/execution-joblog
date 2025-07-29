@@ -8,6 +8,7 @@ const JobManager = forwardRef((props, ref) => {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(false);
+  console.log(props);
 
   async function loadJobs(currentPage: number, refresh = false) {
     setLoading(true);

@@ -11,7 +11,6 @@ export default function JobDetails() {
   const [job, setJob] = useState<any>(null);
   const [logs, setLogs] = useState<any[]>([]);
   const [output, setOutput] = useState<any>("");
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
   // Fallback to context state first
@@ -27,7 +26,6 @@ export default function JobDetails() {
   useEffect(() => {
     async function loadData() {
       if (!jobId) return;
-      setLoading(true);
       setError("");
 
       try {
@@ -57,7 +55,6 @@ export default function JobDetails() {
         console.error(err);
         setError("Unable to fetch latest data, showing cached results");
       } finally {
-        setLoading(false);
       }
     }
 
