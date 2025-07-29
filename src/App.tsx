@@ -2,6 +2,7 @@ import "./App.css";
 import JobManager from "./components/JobManager";
 import JobInput from "./components/JobInput/JobInput";
 import { useRef } from "react";
+import LiveLog from "./components/LiveLog/LiveLog";
 
 export default function App() {
   const jobManagerRef = useRef<any>();
@@ -19,6 +20,7 @@ export default function App() {
       </header>
       <main className="p-6">
         <JobInput onJobCreated={handleJobCreated} />
+        <LiveLog />
         <JobManager ref={jobManagerRef} />
       </main>
     </div>

@@ -40,11 +40,13 @@ export function reducer(state: State, action: Action): State {
             logs: [...(state.jobs[action.jobId]?.logs || []), action.log],
           },
         },
+        globalLogs: [...state.globalLogs, { ...action }],
       };
     case "SET_AGENT_HEALTH":
       return { ...state, agentHealth: action.health };
     case "CLEAR_JOBS":
       return { ...state, jobs: {} };
+
     default:
       return state;
   }

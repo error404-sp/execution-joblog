@@ -7,6 +7,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   const [state, dispatch] = useReducer(reducer, {
     jobs: {},
     agentHealth: null,
+    globalLogs: [],
   });
 
   useEffect(() => {
