@@ -100,9 +100,6 @@ export default function JobDetails() {
         <p>
           <strong>Status:</strong>
           <span className={`status ${job.status}`}>{job.status}</span>
-          {job.status === "failed" && (
-            <span> (retries: {output.retries || job.retries || 0} / 3 )</span>
-          )}
         </p>
 
         <p>
