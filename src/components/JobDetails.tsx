@@ -49,7 +49,7 @@ export default function JobDetails() {
 
           setJob(job);
           setLogs(normalizedLogs);
-          setOutput(normalizedOutput ? normalizedLogs : null);
+          setOutput(normalizedOutput);
         }
       } catch (err) {
         console.error(err);
