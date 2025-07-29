@@ -1,69 +1,28 @@
-# React + TypeScript + Vite
+🚀 Remote Background Job Execution System
+🧠 Description
+This project allows you to run background jobs on a remote server, manage them from a web interface, and stream real-time logs.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+It includes:
 
-Currently, two official plugins are available:
+Job Manager UI – Create, monitor, and stop jobs (commands or scripts).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Live Logs Viewer – View logs across all jobs in real-time.
 
-## Expanding the ESLint configuration
+Job Details Page – See output, logs, parameters, and status of each job.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Remote Execution – All jobs are executed as background tasks on a remote instance in worker threads.
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+🖥️ Frontend (frontend/)
+Built with React + Vite
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+Uses Context API for global state (jobs, logs, health)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Dark-themed, minimal UI inspired by terminal dashboards
+
+🔧 Installation
+
 ```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+cd execution-joblog
+npm install
+npm run dev
 ```
