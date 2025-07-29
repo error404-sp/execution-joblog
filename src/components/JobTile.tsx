@@ -14,7 +14,7 @@ export const JobTile: React.FC<JobTileProps> = ({ job: initialJob }) => {
   const [job, setJob] = useState(initialJob);
   const navigate = useNavigate();
 
-  let timer;
+  let timer: any | undefined;
 
   // Update when the job's data in state changes (status, retries, updated_at etc.)
   useEffect(() => {

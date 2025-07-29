@@ -1,15 +1,15 @@
 import React, { createContext, useContext } from "react";
-import type { Action, State } from "./AppContext.types";
+// import type { any, any } from "./AppContext.types";
 
 export const AppContext = createContext<{
-  state: State;
-  dispatch: React.Dispatch<Action>;
+  state: any;
+  dispatch: React.Dispatch<any>;
 }>({
   state: { jobs: {}, agentHealth: null },
   dispatch: () => {},
 });
 
-export function reducer(state: State, action: Action): State {
+export function reducer(state: any, action: any): any {
   switch (action.type) {
     case "INIT_JOB":
       return {

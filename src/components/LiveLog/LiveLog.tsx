@@ -17,7 +17,7 @@ export default function LiveLog() {
       {state.globalLogs.length === 0 ? (
         <div className="log-line empty">No logs yet...</div>
       ) : (
-        state.globalLogs.map((entry, idx) => (
+        state.globalLogs.map((entry: any, idx: string) => (
           <div key={idx} className="log-line">
             <span className="log-time">{entry.time}</span>
             <span className="log-job">[{entry.jobId.slice(0, 8)}]</span>

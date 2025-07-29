@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useApp } from "../context/AppContext";
 import { fetchJobDetails } from "../api/jobs";
@@ -6,7 +6,6 @@ import "./JobDetails.css";
 
 export default function JobDetails() {
   const { jobId } = useParams();
-  const navigate = useNavigate();
   const { state, dispatch } = useApp();
 
   const [job, setJob] = useState<any>(null);
@@ -66,14 +65,13 @@ export default function JobDetails() {
     loadData();
   }, [jobId, dispatch]);
 
-  if (!job) {
+  if (!job || loading) {
     return (
       <div className="job-details-container">
         <p>No job data found</p>
       </div>
     );
   }
- 
 
   return (
     <div className="job-details-container">
@@ -146,15 +144,13 @@ export default function JobDetails() {
         <h3>Logs:</h3>
         {logs?.length > 0 || job.logs?.length > 0 ? (
           <pre className="logs-terminal">
-            {(logs.length > 0 ? logs : job.logs).map(
-              (log: any, idx: number) => {
-                const line =
-                  typeof log === "object"
-                    ? `[${log.created_at}] : ${log.log}`
-                    : log;
-                return `> ${line}\n`;
-              }
-            )}
+            {(logs.length > 0 ? logs : job.logs).map((log: any) => {
+              const line =
+                typeof log === "object"
+                  ? `[${log.created_at}] : ${log.log}`
+                  : log;
+              return `> ${line}\n`;
+            })}
           </pre>
         ) : (
           <p>No logs available</p>

@@ -1,7 +1,7 @@
 const apiUrl = "https://joblog-backend-production.up.railway.app";
 import { socket } from "../socket";
 
-export const fetchJobs = async (page, limit) => {
+export const fetchJobs = async (page: number, limit: number) => {
   const response = await fetch(
     `${apiUrl}/api/jobs?page=${page || 1}&limit=${limit || 10}`
   );

@@ -1,7 +1,6 @@
 import { useEffect, useReducer } from "react";
 import { AppContext, reducer } from "./AppContext";
 import { socket } from "../socket";
-import type { AgentHealth } from "./AppContext.types";
 
 export function AppProvider({ children }: { children: React.ReactNode }) {
   const [state, dispatch] = useReducer(reducer, {
@@ -11,7 +10,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   });
 
   useEffect(() => {
-    socket.onAny((event, data) => {
+    socket.onAny((event: any, data: any) => {
       let time = data.time ? new Date(data.time).toLocaleTimeString() : "";
       if (event.startsWith("job_status_")) {
         const jobId = event.split("job_status_")[1];
@@ -34,14 +33,8 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       }
     });
 
-    // Listen to agent health updates
-    socket.on("agent_health", (health: AgentHealth) => {
-      dispatch({ type: "SET_AGENT_HEALTH", health });
-    });
-
     return () => {
       socket.offAny();
-      socket.off("agent_health");
     };
   }, []);
 

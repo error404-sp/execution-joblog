@@ -5,7 +5,7 @@ import { useRef } from "react";
 import LiveLog from "./components/LiveLog/LiveLog";
 
 export default function App() {
-  const jobManagerRef = useRef<any>();
+  const jobManagerRef = useRef<any>(null);
 
   const handleJobCreated = () => {
     // Force refresh so new jobs are guaranteed to appear
