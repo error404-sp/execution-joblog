@@ -41,7 +41,7 @@ export default function JobDetails() {
             : log
             ? Object.values(log)
             : [];
-
+          console.log(output);
           const normalizedOutput =
             typeof output === "object"
               ? output?.output || JSON.stringify(output, null, 2)
@@ -49,7 +49,7 @@ export default function JobDetails() {
 
           setJob(job);
           setLogs(normalizedLogs);
-          setOutput(normalizedOutput);
+          setOutput(normalizedOutput || null);
         }
       } catch (err) {
         console.error(err);
