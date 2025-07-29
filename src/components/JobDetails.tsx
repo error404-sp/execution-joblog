@@ -46,13 +46,12 @@ export default function JobDetails() {
 
           const normalizedOutput =
             typeof output === "object"
-              ? output.output || JSON.stringify(output, null, 2)
+              ? output?.output || JSON.stringify(output, null, 2)
               : output || "";
 
-          // Local state update
           setJob(job);
           setLogs(normalizedLogs);
-          setOutput(normalizedOutput);
+          setOutput(normalizedOutput ? normalizedLogs : null);
         }
       } catch (err) {
         console.error(err);
@@ -64,8 +63,7 @@ export default function JobDetails() {
 
     loadData();
   }, [jobId, dispatch]);
-
-  if (!job || loading) {
+  if (!job) {
     return (
       <div className="job-details-container">
         <p>No job data found</p>
