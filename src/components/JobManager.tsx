@@ -1,18 +1,21 @@
-import { useEffect, useState } from "react";
+import { forwardRef, useEffect, useImperativeHandle, useState } from "react";
 import { useApp } from "../context/AppContext";
 import { fetchJobs } from "../api/jobs";
 import { JobTile } from "./JobTile";
 
-export default function JobManager() {
+const JobManager = forwardRef((props, ref) => {
   const { state, dispatch } = useApp();
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(false);
 
-  async function loadJobs(currentPage: number) {
+  async function loadJobs(currentPage: number, refresh = false) {
     setLoading(true);
     try {
       const data = await fetchJobs(currentPage, 10);
+      if (refresh) {
+        dispatch({ type: "CLEAR_JOBS" });
+      }
 
       setTotalPages(data.totalPages);
 
@@ -28,6 +31,10 @@ export default function JobManager() {
       setLoading(false);
     }
   }
+
+  useImperativeHandle(ref, () => ({
+    refreshJobs: () => loadJobs(1, true),
+  }));
 
   useEffect(() => {
     loadJobs(page);
@@ -58,7 +65,7 @@ export default function JobManager() {
             ) : (
               Object.values(state.jobs)
                 .slice((page - 1) * 10, page * 10)
-                .map((job) => <JobTile job={job} />)
+                .map((job) => <JobTile key={job.id} job={job} />)
             )}
           </tbody>
         </table>
@@ -86,4 +93,5 @@ export default function JobManager() {
       </div>
     </>
   );
-}
+});
+export default JobManager;

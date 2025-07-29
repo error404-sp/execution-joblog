@@ -3,6 +3,7 @@ import { useApp } from "../context/AppContext";
 import { stopJob } from "../api/jobs";
 import { timeAgo, truncateText } from "../helpers/helper";
 import "./JobManager.css";
+import { useNavigate } from "react-router-dom";
 
 interface JobTileProps {
   job: any;
@@ -11,6 +12,8 @@ interface JobTileProps {
 export const JobTile: React.FC<JobTileProps> = ({ job: initialJob }) => {
   const { state, dispatch } = useApp();
   const [job, setJob] = useState(initialJob);
+  const navigate = useNavigate();
+
   let timer;
 
   // Update when the job's data in state changes (status, retries, updated_at etc.)
@@ -34,6 +37,7 @@ export const JobTile: React.FC<JobTileProps> = ({ job: initialJob }) => {
   // Click handler (for navigation or modal)
   const handleClick = () => {
     // TODO: Add navigation or modal logic
+    navigate(`/jobs/${job.id}`);
   };
 
   // Stop job handler

@@ -25,6 +25,8 @@ export function reducer(state: State, action: Action): State {
             ...state.jobs[action.jobId],
             status: action.status,
             output: action.output || state.jobs[action.jobId]?.output,
+            logs: [...(state.jobs[action.jobId]?.logs || []), action.log],
+            retries: action.retries,
           },
         },
       };
@@ -41,6 +43,8 @@ export function reducer(state: State, action: Action): State {
       };
     case "SET_AGENT_HEALTH":
       return { ...state, agentHealth: action.health };
+    case "CLEAR_JOBS":
+      return { ...state, jobs: {} };
     default:
       return state;
   }

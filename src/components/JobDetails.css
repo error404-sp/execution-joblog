@@ -1,0 +1,141 @@
+.job-details-container {
+  padding: 20px;
+  margin: 0 auto;
+  background: var(--card-bg);
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  width: 80vw;
+}
+
+.back-btn {
+  background: var(--accent-color);
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  cursor: pointer;
+}
+.back-btn:hover {
+  opacity: 0.85;
+}
+
+h2 {
+  margin-top: 0;
+  color: var(--text-color);
+  font-size: 16px;
+}
+
+.error {
+  background: #2c0e0e;
+  color: #f55;
+  padding: 8px 10px;
+  border-radius: 4px;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+.job-section {
+  margin-bottom: 24px;
+  background: #181818;
+  padding: 14px;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+}
+
+.job-section p {
+  margin: 6px 0;
+  font-size: 15px;
+  color: var(--text-color);
+  text-align: justify;
+}
+
+.job-section strong {
+  color: #bbb;
+}
+
+.job-section .command-readonly {
+  display: block;
+  width: 90%;
+  height: 50px;
+  text-align: justify;
+  background: #1b1b1b;
+  border: 1px solid #333;
+  border-radius: 4px;
+  padding: 6px 8px;
+  font-size: 14px;
+  color: #e6e6e6;
+  margin-top: 4px;
+  white-space: pre-wrap; /* Preserve spaces and line breaks */
+  word-break: break-word; /* Break long words if needed */
+}
+
+.output-box {
+  background: #000;
+  color: #9ae29a;
+  padding: 12px;
+  border-radius: 6px;
+  white-space: pre-wrap;
+  overflow-x: auto;
+  font-size: 14px;
+  line-height: 1.4;
+  text-align: justify;
+}
+
+.logs-terminal {
+  background: #111;
+  color: #d4d4d4;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 14px;
+  border: 1px solid #333;
+  border-radius: 6px;
+  padding: 10px;
+  margin-top: 8px;
+  max-height: 250px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  text-align: justify;
+  line-height: 1.4;
+}
+
+.logs-terminal::-webkit-scrollbar {
+  width: 8px;
+}
+
+.logs-terminal::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 4px;
+}
+
+.job-section .status {
+  display: inline-block;
+  font-weight: bold;
+  margin-left: 4px;
+}
+
+.job-section .status.completed {
+  color: #4caf50;
+}
+
+.job-section .status.running {
+  color: #ffb300;
+}
+
+.job-section .status.failed {
+  color: #f44336;
+}
+
+.job-section .status.queued {
+  color: #29b6f6;
+}
+
+.job-section .status.retrying {
+  color: #ff9800;
+}
+
+.scrollable-command {
+  max-height: 100px;
+  overflow-y: auto;
+}

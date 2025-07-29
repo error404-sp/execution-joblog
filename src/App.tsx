@@ -1,16 +1,25 @@
 import "./App.css";
 import JobManager from "./components/JobManager";
+import JobInput from "./components/JobInput/JobInput";
+import { useRef } from "react";
 
 export default function App() {
+  const jobManagerRef = useRef<any>();
+
+  const handleJobCreated = () => {
+    // Force refresh so new jobs are guaranteed to appear
+    jobManagerRef.current?.refreshJobs();
+  };
   return (
-    <div className="min-h-screen bg-gray-100 text-gray-800">
-      <header className="bg-blue-600 text-white p-4 shadow">
+    <div>
+      <header>
         <h2 className="text-lg font-semibold mb-4">
           Remote Job Execution System
         </h2>
       </header>
       <main className="p-6">
-        <JobManager />
+        <JobInput onJobCreated={handleJobCreated} />
+        <JobManager ref={jobManagerRef} />
       </main>
     </div>
   );
