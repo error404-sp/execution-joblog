@@ -2,6 +2,7 @@
 🧠 Description
 This project allows you to run background jobs on a remote server, manage them from a web interface, and stream real-time logs.
 
+* [backend url](https://github.com/error404-sp/joblog-backend)
 It includes:
 
 Job Manager UI – Create, monitor, and stop jobs (commands or scripts).
